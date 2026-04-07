@@ -64,17 +64,16 @@ statusline.setup({
       vim.api.nvim_set_hl(0, 'StDiagError', { fg = err_fg, bg = dev_bg })
       vim.api.nvim_set_hl(0, 'StDiagWarn', { fg = warn_fg, bg = dev_bg })
 
-      -- local function get_diagnostics()
-      --   local count = vim.diagnostic.count(0)
-      --   local errors = count[vim.diagnostic.severity.ERROR] or 0
-      --   local warnings = count[vim.diagnostic.severity.WARN] or 0
-      --   local items = {}
-      --   if errors > 0 then table.insert(items, '%#StDiagError#X ' .. errors) end
-      --   if warnings > 0 then table.insert(items, '%#StDiagWarn#! ' .. warnings) end
-      --   return table.concat(items, ' ')
-      -- end
-      -- local diag_str = get_diagnostics()
-      local diag_str = vim.diagnostic.status() or ''
+      local function get_diagnostics()
+        local count = vim.diagnostic.count(0)
+        local errors = count[vim.diagnostic.severity.ERROR] or 0
+        local warnings = count[vim.diagnostic.severity.WARN] or 0
+        local items = {}
+        if errors > 0 then table.insert(items, '%#StDiagError#X ' .. errors) end
+        if warnings > 0 then table.insert(items, '%#StDiagWarn#! ' .. warnings) end
+        return table.concat(items, ' ')
+      end
+      local diag_str = get_diagnostics()
 
       -- Filename info
       local filename = vim.fn.expand('%:t')

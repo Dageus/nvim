@@ -14,22 +14,16 @@ now_if_args(function()
   })
 
   require('mason').setup()
-require("mason-lspconfig").setup({
-  -- List the LSP servers you want automatically installed
-  ensure_installed = { 
-    "lua_ls",    -- Lua
-    "pyright",   -- Python
-    "ts_ls",     -- TypeScript/JS
-    "rust_analyzer" 
-  },
-  -- Automatically set up servers you've configured via vim.lsp.config
-  automatic_installation = true,
-})
+  require("mason-lspconfig").setup({
+    -- List the LSP servers you want automatically installed
+    ensure_installed = servers,
+    -- Automatically set up servers you've configured via vim.lsp.config
+    automatic_installation = true,
+  })
 
   -- Native NeoVim autocompletion
   vim.o.autocomplete = true
   vim.o.complete = '.^5,t^3,w,o' -- Buffer, tags, windows, and omnifunc (LSP)
-  vim.o.pumborder = 'rounded'
   vim.o.pummaxwidth = 40
   vim.o.completeopt = 'menu,menuone,noselect'
 
