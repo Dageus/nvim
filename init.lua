@@ -40,13 +40,11 @@ Config.lsp_servers = {
   'clangd',
   'gopls',
   'lua_ls',
-  'nushell',
   'bashls',
   'ty',
   'rust_analyzer',
   'vtsls',
   'solidity_ls_nomicfoundation',
-  'nixfmt',
 }
 
 -- Loading settings
@@ -62,3 +60,16 @@ require('plugins.tree_sitter')
 require('plugins.lsp')
 require('plugins.formatting')
 require('plugins.extra')
+
+-- Custom Highlights =======================================================
+
+-- for mini.pick
+vim.api.nvim_set_hl(
+  0,
+  'MiniPickMatchCurrent',
+  { fg = '#E56B1A', bold = true, bg = 'NONE' }
+)
+
+vim.api.nvim_set_hl(0, 'PmenuBorder', { fg = "#E56B1A" }) -- Keeps your orange border color
+
+vim.api.nvim_set_hl(0, 'MiniStatuslineModeNormal', { fg = '#16161D', bg = '#938aa9', bold = true })

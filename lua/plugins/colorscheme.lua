@@ -20,7 +20,14 @@ now(function()
   Kanagawa.load('wave')
 
   require('transparent').setup({
-    extra_groups = { 'NormalFloat', 'MiniPickBorder', 'FloatBorder' }, --
+    extra_groups = {
+      'NormalFloat',
+      'MiniPickBorder',
+      'FloatBorder',
+      'Pmenu',       -- The PUM background
+      'PmenuBorder', -- The PUM border
+      'PmenuThumb',  -- The scrollbar handle
+    },
     exclude_groups = {
       'MiniPickTargetLine',
       'MiniPickMatchCurrent',
@@ -32,6 +39,6 @@ now(function()
     bg = colors.palette.carpYellow,
     fg = colors.palette.sumiInk0, -- Adding a dark foreground for contrast
     bold = true,
-    force = true, -- Use force to override any plugin links
+    force = true,                 -- Use force to override any plugin links
   })
 end)

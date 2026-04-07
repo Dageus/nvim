@@ -12,7 +12,7 @@ now_if_args(function()
   -- Ensure installed
   --stylua: ignore
   local ensure_languages = {
-    'bash', 'c',          'cpp',  'css',   'diff', 'go',
+    'bash', 'c',          'cpp',  'css',   'diff', 'go', 'nix',
     'html', 'javascript', 'json', 'julia', 'nu',   'php', 'python',
     'r',    'regex',      'rst',  'rust',  'toml', 'tsx', 'typescript', 'yaml',
   }

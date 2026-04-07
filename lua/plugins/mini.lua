@@ -337,12 +337,3 @@ _G.get_maxwidth_bytes = function()
   end
   return res - 1
 end
-
--- Custom Auto Commands =======================================================
-
--- for mini.pick
-vim.api.nvim_set_hl(
-  0,
-  'MiniPickMatchCurrent',
-  { fg = '#E56B1A', bold = true, bg = 'NONE' }
-)

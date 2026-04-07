@@ -19,7 +19,6 @@ later(function()
       python = { 'ruff_fix', 'ruff_format' },
       r = { 'air' },
       nix = { 'nixfmt' },
-      solidity = { 'prettier' },
     },
   })
 end)

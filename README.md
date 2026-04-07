@@ -10,7 +10,28 @@ This is my NeoVim setup, where most of the `mini` ecosystem is adopted for minim
 
 - nvim >= 0.12
 
-> Contrary to echasnovski's config, I don't have backwards compatibility, relying solely on nvim >= 0.12, since it finally removed third-party package managers and unnecessary bloat in favor of `vim.packer`
+- Go
+
+- npm
+
+- cargo
+
+- Python/pip
+
+- A Nerd font
+
+- ripgrep
+
+> Contrary to echasnovski's config, I don't have backwards compatibility, relying solely on nvim >= 0.12, since it finally removed third-party package managers and unnecessary bloat in favor of `vim.pack`
+
+## File Structure
+
+```
+├── init.lua           # Global settings, Config helpers, Mason tool lists
+└── lua/
+    ├── core/          # Keymaps, Options, Autocommands
+    └── plugins/       # Individual plugin setups (LSP, Mini, Conform)
+```
 
 ## Colorscheme
 

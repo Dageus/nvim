@@ -48,9 +48,7 @@ if vim.fn.has('nvim-0.10') == 0 then vim.o.termguicolors = true end
 if vim.fn.has('nvim-0.12') == 1 then
   vim.o.completetimeout = 100
 
-  vim.o.pumborder = 'rounded'
-  vim.api.nvim_set_hl(0, 'Pmenu', { bg = 'NONE' })
-  vim.api.nvim_set_hl(0, 'PmenuBorder', { bg = 'NONE', fg = "#CC6600" })
+  vim.o.pumborder = 'single'
 
   require('vim._core.ui2').enable({ enable = true })
 
