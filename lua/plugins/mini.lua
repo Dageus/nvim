@@ -64,16 +64,17 @@ statusline.setup({
       vim.api.nvim_set_hl(0, 'StDiagError', { fg = err_fg, bg = dev_bg })
       vim.api.nvim_set_hl(0, 'StDiagWarn', { fg = warn_fg, bg = dev_bg })
 
-      local function get_diagnostics()
-        local count = vim.diagnostic.count(0)
-        local errors = count[vim.diagnostic.severity.ERROR] or 0
-        local warnings = count[vim.diagnostic.severity.WARN] or 0
-        local items = {}
-        if errors > 0 then table.insert(items, '%#StDiagError#X ' .. errors) end
-        if warnings > 0 then table.insert(items, '%#StDiagWarn#! ' .. warnings) end
-        return table.concat(items, ' ')
-      end
-      local diag_str = get_diagnostics()
+      -- local function get_diagnostics()
+      --   local count = vim.diagnostic.count(0)
+      --   local errors = count[vim.diagnostic.severity.ERROR] or 0
+      --   local warnings = count[vim.diagnostic.severity.WARN] or 0
+      --   local items = {}
+      --   if errors > 0 then table.insert(items, '%#StDiagError#X ' .. errors) end
+      --   if warnings > 0 then table.insert(items, '%#StDiagWarn#! ' .. warnings) end
+      --   return table.concat(items, ' ')
+      -- end
+      -- local diag_str = get_diagnostics()
+      local diag_str = vim.diagnostic.status() or ''
 
       -- Filename info
       local filename = vim.fn.expand('%:t')
@@ -82,9 +83,13 @@ statusline.setup({
       if vim.bo.readonly then filename = filename .. ' [RO]' end
 
       -- Git & Diagnostics
+      local progress = vim.ui.progress_status() or ''
       local dev_info = git
       if diag_str ~= '' then
         dev_info = (git ~= '' and (git .. '  ') or '') .. diag_str
+      end
+      if progress ~= '' then
+        dev_info = (dev_info ~= '' and (dev_info .. '  ') or '') .. progress
       end
 
       local mode_bg = get_bg(mode_hl)
@@ -142,7 +147,8 @@ later(function()
   ai.setup({
     custom_textobjects = {
       B = MiniExtra.gen_ai_spec.buffer(),
-      F = ai.gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }),
+      f = ai.gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }),
+      c = ai.gen_spec.treesitter({ a = '@class.outer', i = '@class.inner' }),
       o = ai.gen_spec.treesitter({ a = '@block.outer', i = '@block.inner' }),
     },
     search_method = 'cover',
@@ -332,3 +338,12 @@ _G.get_maxwidth_bytes = function()
   end
   return res - 1
 end
+
+-- Custom Auto Commands =======================================================
+
+-- for mini.pick
+vim.api.nvim_set_hl(
+  0,
+  'MiniPickMatchCurrent',
+  { fg = '#E56B1A', bold = true, bg = 'NONE' }
+)

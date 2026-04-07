@@ -34,14 +34,25 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function() vim.hl.on_yank() end,
-})
-
 -- Clear highlights on Escape
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+-- Incremental selection
+vim.keymap.set({ 'n', 'x' }, '<CR>', function()
+  -- If we are in normal mode, start the selection
+  if vim.fn.mode() == 'n' then
+    vim.cmd('normal! v')
+    vim.cmd('normal! in') -- 'in' is the native map for "inner node"
+  else
+    -- If already in visual mode, expand to the parent node
+    vim.cmd('normal! an')
+  end
+end, { desc = 'Increment selection' })
+
+vim.keymap.set('x', '<BS>', function()
+  -- Shrink selection to the child node
+  vim.cmd('normal! in')
+end, { desc = 'Decrement selection' })
 
 -- Leader mappings ============================================================
 -- stylua: ignore start
@@ -61,6 +72,7 @@ Config.leader_group_clues = {
   { mode = 'n', keys = '<Leader>s', desc = '+Session' },
   { mode = 'n', keys = '<Leader>t', desc = '+Terminal/Minitest' },
   { mode = 'n', keys = '<Leader>T', desc = '+Test' },
+  { mode = 'n', keys = '<Leader>u', desc = '+Undo' },
   { mode = 'n', keys = '<Leader>v', desc = '+Visits' },
 
   { mode = 'x', keys = '<Leader>g', desc = '+Git' },
@@ -211,6 +223,9 @@ nmap_leader('TN', '<Cmd>TestNearest -strategy=make | copen<CR>', 'Nearest (quick
 nmap_leader('Tn', '<Cmd>TestNearest<CR>',                        'Nearest')
 nmap_leader('TS', '<Cmd>TestSuite -strategy=make | copen<CR>',   'Suite (quickfix)')
 nmap_leader('Ts', '<Cmd>TestSuite<CR>',                          'Suite')
+
+-- u is for 'Undo'
+nmap_leader('u', '<Cmd>Undotree<CR>', 'Toggle built-in Undotree')
 
 -- v is for 'Visits'
 local make_pick_core = function(cwd, desc)

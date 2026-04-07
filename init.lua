@@ -1,3 +1,7 @@
+-- Leader
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
 -- Install 'mini.nvim'
 vim.pack.add({ 'https://github.com/nvim-mini/mini.nvim' })
 
@@ -30,3 +34,31 @@ Config.on_packchanged = function(plugin_name, kinds, callback, desc)
   end
   Config.new_autocmd('PackChanged', '*', f, desc)
 end
+
+-- Define LSP's
+Config.lsp_servers = {
+  'clangd',
+  'gopls',
+  'lua_ls',
+  'nushell',
+  'bashls',
+  'ty',
+  'rust_analyzer',
+  'vtsls',
+  'solidity_ls_nomicfoundation',
+  'nixfmt',
+}
+
+-- Loading settings
+require('core.options')
+require('core.keymaps')
+require('core.autocmds')
+require('core.functions')
+
+-- Loading plugins
+require('plugins.mini')
+require('plugins.colorscheme')
+require('plugins.tree_sitter')
+require('plugins.lsp')
+require('plugins.formatting')
+require('plugins.extra')
