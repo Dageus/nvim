@@ -49,7 +49,7 @@ now_if_args(function()
   -- Ensure installed
   --stylua: ignore
   local ensure_languages = {
-    'bash', 'c',          'cpp',  'css',   'diff', 'go',
+    'bash', 'c',          'cpp',  'css',   'diff', 'go', 'nix'
     'html', 'javascript', 'json', 'julia', 'nu',   'php', 'python',
     'r',    'regex',      'rst',  'rust',  'toml', 'tsx', 'typescript', 'yaml',
   }
@@ -109,20 +109,16 @@ now_if_args(function()
   end
   vim.lsp.config('*', { capabilities = capabilities })
 
-  vim.lsp.config('r_language_server', { filetypes = { 'r', 'rmd' } })
-
   vim.lsp.enable({
     'clangd',
     'gopls',
     'lua_ls',
-    'nushell',
     'bashls',
     'ty',
     'r_language_server',
     'rust_analyzer',
     'vtsls',
     'solidity_ls_nomicfoundation',
-    'nixfmt',
   })
 end)
 
