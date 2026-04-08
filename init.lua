@@ -63,15 +63,19 @@ require('plugins.extra')
 
 -- Custom Highlights =======================================================
 
+vim.api.nvim_set_hl(0, 'MiniStatuslineModeNormal', { fg = '#16161D', bg = '#938aa9', bold = true })
+
+-- Sharp orange border for completion
+vim.api.nvim_set_hl(0, 'PmenuBorder', { fg = "#CC6600", bg = "NONE" })
+-- The "selection" bar inside the menu (the line you are currently on)
+vim.api.nvim_set_hl(0, 'PmenuSel', { bg = "#2D2D2D", fg = "NONE" })
+
+vim.api.nvim_set_hl(0, 'PmenuExtra', { bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'PmenuKind', { bg = 'NONE', italic = true })
+
 -- for mini.pick
 vim.api.nvim_set_hl(
   0,
   'MiniPickMatchCurrent',
   { fg = '#E56B1A', bold = true, bg = 'NONE' }
 )
-
-vim.api.nvim_set_hl(0, 'MiniStatuslineModeNormal', { fg = '#16161D', bg = '#938aa9', bold = true })
-
-vim.api.nvim_set_hl(0, 'PmenuBorder', { fg = "#E56B1A" }) -- Keeps your orange border color
-vim.api.nvim_set_hl(0, 'PmenuExtra', { bg = 'NONE' })
-vim.api.nvim_set_hl(0, 'PmenuKind', { bg = 'NONE', italic = true })

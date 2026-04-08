@@ -24,6 +24,7 @@ now(function()
       'NormalFloat',
       'MiniPickBorder',
       'FloatBorder',
+      'CmpPmenu',
       'Pmenu',       -- The PUM background
       'PmenuBorder', -- The PUM border
       'PmenuThumb',  -- The scrollbar handle
