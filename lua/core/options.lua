@@ -18,6 +18,8 @@ vim.o.showmode = false
 -- vim.o.listchars = 'extends:…,nbsp:␣,precedes:…,tab:│ ,trail:·'
 vim.opt.list = true
 vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
+
+-- shortmess
 vim.opt.shortmess:append('cIWa')
 
 vim.o.wrap = false               -- Don't visually wrap lines (toggle with \w)
@@ -48,8 +50,6 @@ if vim.fn.has('nvim-0.10') == 0 then vim.o.termguicolors = true end
 
 if vim.fn.has('nvim-0.12') == 1 then
   vim.o.completetimeout = 100
-
-  vim.o.pumborder = 'single'
 
   require('vim._core.ui2').enable({ enable = true })
 

@@ -26,6 +26,7 @@ now_if_args(function()
   vim.o.complete = 'o,.^5,t^3,w' -- omnifunc (LSP), Buffer, tags, windows
   vim.o.pummaxwidth = 40
   vim.o.pumheight = 6
+  vim.o.pumborder = 'single'
   vim.o.completeopt = 'menu,menuone,noselect,fuzzy'
 
   -- LSP Configuration
