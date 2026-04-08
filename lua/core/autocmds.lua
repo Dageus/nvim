@@ -13,6 +13,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(event)
     local opts = { buffer = event.buf }
 
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
+    if client and client.server_capabilities.completionProvider then
+      vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
+    end
+
     -- The classic 'Go to Definition'
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
 

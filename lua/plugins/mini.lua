@@ -5,10 +5,10 @@ now(function()
     use_file_extension = function(ext, _)
       local suf3, suf4 = ext:sub(-3), ext:sub(-4)
       return suf3 ~= 'scm'
-        and suf3 ~= 'txt'
-        and suf3 ~= 'yml'
-        and suf4 ~= 'json'
-        and suf4 ~= 'yaml'
+          and suf3 ~= 'txt'
+          and suf3 ~= 'yml'
+          and suf4 ~= 'json'
+          and suf4 ~= 'yaml'
     end,
   })
   later(MiniIcons.mock_nvim_web_devicons)
@@ -18,13 +18,13 @@ end)
 now(function()
   local predicate = function(notif)
     if
-      not (notif.data.source == 'lsp_progress' and notif.data.client_name == 'lua_ls')
+        not (notif.data.source == 'lsp_progress' and notif.data.client_name == 'lua_ls')
     then
       return true
     end
     -- Filter out some LSP progress notifications from 'lua_ls'
     return notif.msg:find('Diagnosing') == nil
-      and notif.msg:find('semantic tokens') == nil
+        and notif.msg:find('semantic tokens') == nil
   end
   local custom_sort = function(notif_arr)
     return MiniNotify.default_sort(vim.tbl_filter(predicate, notif_arr))
@@ -107,17 +107,17 @@ statusline.setup({
       local left = string.format('%%#%s# %s %%#StModeToDev#', mode_hl, mode:upper())
       if dev_info ~= '' then
         left = left
-          .. string.format('%%#MiniStatuslineDevinfo# %s %%#StDevToFile#', dev_info)
+            .. string.format('%%#MiniStatuslineDevinfo# %s %%#StDevToFile#', dev_info)
       end
       left = left
-        .. string.format('%%#MiniStatuslineFilename# %s %%#StFileToMid#', filename)
+          .. string.format('%%#MiniStatuslineFilename# %s %%#StFileToMid#', filename)
 
       local encoding = vim.bo.fenc ~= '' and vim.bo.fenc or vim.o.enc
       local filetype = vim.bo.filetype
       local lsp_status = #vim.lsp.get_clients({ bufnr = 0 }) > 0 and '󰄭 ' or ''
 
       local right_info =
-        string.format('%s  %s  %s', encoding, lsp_status, filetype)
+          string.format('%s  %s  %s', encoding, lsp_status, filetype)
       local location = string.format('%s', '%l:%c')
 
       local right = string.format(
@@ -176,16 +176,16 @@ later(function()
     },
     triggers = {
       { mode = { 'n', 'x' }, keys = '<Leader>' }, -- Leader triggers
-      { mode =   'n',        keys = '\\' },       -- mini.basics
+      { mode = 'n',          keys = '\\' },       -- mini.basics
       { mode = { 'n', 'x' }, keys = '[' },        -- mini.bracketed
       { mode = { 'n', 'x' }, keys = ']' },
-      { mode =   'i',        keys = '<C-x>' },    -- Built-in completion
+      { mode = 'i',          keys = '<C-x>' },    -- Built-in completion
       { mode = { 'n', 'x' }, keys = 'g' },        -- `g` key
       { mode = { 'n', 'x' }, keys = "'" },        -- Marks
       { mode = { 'n', 'x' }, keys = '`' },
       { mode = { 'n', 'x' }, keys = '"' },        -- Registers
       { mode = { 'i', 'c' }, keys = '<C-r>' },
-      { mode =   'n',        keys = '<C-w>' },    -- Window commands
+      { mode = 'n',          keys = '<C-w>' },    -- Window commands
       { mode = { 'n', 'x' }, keys = 's' },        -- `s` key
       { mode = { 'n', 'x' }, keys = 'z' },        -- `z` key
     },

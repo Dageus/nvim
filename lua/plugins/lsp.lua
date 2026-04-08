@@ -23,9 +23,10 @@ now_if_args(function()
 
   -- Native NeoVim autocompletion
   vim.o.autocomplete = true
-  vim.o.complete = '.^5,t^3,w,o' -- Buffer, tags, windows, and omnifunc (LSP)
+  vim.o.complete = 'o,.^5,t^3,w' -- omnifunc (LSP), Buffer, tags, windows
   vim.o.pummaxwidth = 40
-  vim.o.completeopt = 'menu,menuone,noselect'
+  vim.o.pumheight = 6
+  vim.o.completeopt = 'menu,menuone,noselect,fuzzy'
 
   -- LSP Configuration
   local capabilities = vim.lsp.protocol.make_client_capabilities()

@@ -41,7 +41,7 @@ Config.lsp_servers = {
   'gopls',
   'lua_ls',
   'bashls',
-  'ty',
+  'basedpyright',
   'rust_analyzer',
   'vtsls',
   'solidity_ls_nomicfoundation',
@@ -70,6 +70,8 @@ vim.api.nvim_set_hl(
   { fg = '#E56B1A', bold = true, bg = 'NONE' }
 )
 
-vim.api.nvim_set_hl(0, 'PmenuBorder', { fg = "#E56B1A" }) -- Keeps your orange border color
-
 vim.api.nvim_set_hl(0, 'MiniStatuslineModeNormal', { fg = '#16161D', bg = '#938aa9', bold = true })
+
+vim.api.nvim_set_hl(0, 'PmenuBorder', { fg = "#E56B1A" }) -- Keeps your orange border color
+vim.api.nvim_set_hl(0, 'PmenuExtra', { bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'PmenuKind', { bg = 'NONE', italic = true })

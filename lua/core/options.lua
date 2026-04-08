@@ -18,6 +18,7 @@ vim.o.showmode = false
 -- vim.o.listchars = 'extends:…,nbsp:␣,precedes:…,tab:│ ,trail:·'
 vim.opt.list = true
 vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
+vim.opt.shortmess:append('cIWa')
 
 vim.o.wrap = false               -- Don't visually wrap lines (toggle with \w)
 vim.o.breakindent = true         -- Indent wrapped lines to match line start
