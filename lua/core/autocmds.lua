@@ -14,8 +14,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local opts = { buffer = event.buf }
 
     local client = vim.lsp.get_client_by_id(event.data.client_id)
-    if client and client.server_capabilities.completionProvider then
-      vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
+
+    -- Specifically target the Solidity LSP to fix highlighting
+    if client and client.name == 'solidity_ls_nomicfoundation' then
+      client.server_capabilities.semanticTokensProvider = nil
     end
 
     -- The classic 'Go to Definition'

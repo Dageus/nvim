@@ -35,20 +35,6 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- Navigate auto-suggestions
-vim.keymap.set('i', '<Tab>', function()
-  return vim.fn.pumvisible() == 1 and '<C-n>' or '<Tab>'
-end, { expr = true, replace_keycodes = true, desc = 'Next autocomplete suggestion' })
-
-vim.keymap.set('i', '<S-Tab>', function()
-  return vim.fn.pumvisible() == 1 and '<C-p>' or '<S-Tab>'
-end, { expr = true, replace_keycodes = true, desc = 'Previous autocomplete suggestion' })
-
-vim.keymap.set('i', '<CR>', function()
-  -- <C-y> is Vim's native key to accept the current popup menu item
-  return vim.fn.pumvisible() == 1 and '<C-y>' or '<CR>'
-end, { expr = true, replace_keycodes = true, desc = 'Confirm autocomplete suggestion' })
-
 -- Clear highlights on Escape
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 

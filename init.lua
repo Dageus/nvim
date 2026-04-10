@@ -47,6 +47,39 @@ Config.lsp_servers = {
   'solidity_ls_nomicfoundation',
 }
 
+-- Define Tools
+Config.tools = {
+  'stylua',
+  'ruff',
+  'prettier',
+  'nixfmt',
+}
+
+Config.languages = {
+  'bash',
+  'c',
+  'cpp',
+  'css',
+  'diff',
+  'go',
+  'nix',
+  'html',
+  'javascript',
+  'json',
+  'julia',
+  'nu',
+  'php',
+  'python',
+  'r',
+  'regex',
+  'rst',
+  'rust',
+  'toml',
+  'tsx',
+  'typescript',
+  'yaml',
+}
+
 -- Loading settings
 require('core.options')
 require('core.keymaps')
@@ -63,12 +96,16 @@ require('plugins.extra')
 
 -- Custom Highlights =======================================================
 
-vim.api.nvim_set_hl(0, 'MiniStatuslineModeNormal', { fg = '#16161D', bg = '#938aa9', bold = true })
+vim.api.nvim_set_hl(
+  0,
+  'MiniStatuslineModeNormal',
+  { fg = '#16161D', bg = '#938aa9', bold = true }
+)
 
 -- Sharp orange border for completion
-vim.api.nvim_set_hl(0, 'PmenuBorder', { fg = "#CC6600", bg = "NONE" })
+vim.api.nvim_set_hl(0, 'PmenuBorder', { fg = '#938aa9', bg = 'NONE' })
 -- The "selection" bar inside the menu (the line you are currently on)
-vim.api.nvim_set_hl(0, 'PmenuSel', { bg = "#2D2D2D", fg = "NONE" })
+vim.api.nvim_set_hl(0, 'PmenuSel', { bg = '#2D2D2D', fg = 'NONE' })
 
 vim.api.nvim_set_hl(0, 'PmenuExtra', { bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'PmenuKind', { bg = 'NONE', italic = true })
@@ -77,5 +114,23 @@ vim.api.nvim_set_hl(0, 'PmenuKind', { bg = 'NONE', italic = true })
 vim.api.nvim_set_hl(
   0,
   'MiniPickMatchCurrent',
-  { fg = '#E56B1A', bold = true, bg = 'NONE' }
+  { fg = '#938aa9', bold = true, bg = 'NONE' }
 )
+
+vim.api.nvim_set_hl(0, 'MiniFilesCursorLine', {
+  fg = '#938aa9',
+  bold = true,
+  bg = 'NONE',
+  force = true,
+})
+
+-- Inject the highlight into mini.files windows when they open
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'MiniFilesWindowOpen',
+  desc = 'Highlight current line in mini.files for transparent backgrounds',
+  callback = function(args)
+    local win_id = args.data.win_id
+    -- Swap the default CursorLine to our custom orange foreground highlight
+    vim.wo[win_id].winhighlight = 'CursorLine:MiniFilesCursorLine'
+  end,
+})

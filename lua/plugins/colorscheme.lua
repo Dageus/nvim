@@ -5,6 +5,7 @@ local now = Config.now
 now(function()
   add({
     'https://github.com/rebelot/kanagawa.nvim',
+    'https://github.com/scottmckendry/cyberdream.nvim',
     'https://github.com/xiyaowong/transparent.nvim',
   })
 

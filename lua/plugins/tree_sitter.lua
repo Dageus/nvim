@@ -1,5 +1,6 @@
 local add = vim.pack.add
 local now_if_args = Config.now_if_args
+local languages = Config.languages
 
 -- Tree-sitter ================================================================
 now_if_args(function()
@@ -11,11 +12,7 @@ now_if_args(function()
 
   -- Ensure installed
   --stylua: ignore
-  local ensure_languages = {
-    'bash', 'c',          'cpp',  'css',   'diff', 'go', 'nix',
-    'html', 'javascript', 'json', 'julia', 'nu',   'php', 'python',
-    'r',    'regex',      'rst',  'rust',  'toml', 'tsx', 'typescript', 'yaml',
-  }
+  local ensure_languages = languages
   local isnt_installed = function(lang)
     return #vim.api.nvim_get_runtime_file('parser/' .. lang .. '.*', false) == 0
   end
@@ -24,12 +21,16 @@ now_if_args(function()
 
   -- Ensure enabled
   local filetypes = vim
-    .iter(ensure_languages)
-    :map(vim.treesitter.language.get_filetypes)
-    :flatten()
-    :totable()
+      .iter(ensure_languages)
+      :map(vim.treesitter.language.get_filetypes)
+      :flatten()
+      :totable()
   vim.list_extend(filetypes, { 'markdown', 'quarto' })
-  local ts_start = function(ev) vim.treesitter.start(ev.buf) end
+  local ts_start = function(ev)
+    vim.treesitter.start(ev.buf)
+    -- Tell the buffer to use Tree-sitter logic for placing braces and indents
+    vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end
   Config.new_autocmd('FileType', filetypes, ts_start, 'Ensure enabled tree-sitter')
 
   -- Miscellaneous adjustments

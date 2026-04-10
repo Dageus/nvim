@@ -29,7 +29,6 @@ vim.o.splitbelow = true          -- Horizontal splits will be below
 vim.o.splitkeep = 'screen'       -- Reduce scroll during window split
 vim.o.splitright = true          -- Vertical splits will be to the right
 vim.o.ignorecase = true
-vim.o.smartcase = true
 vim.o.signcolumn = 'yes'
 vim.o.termguicolors = true
 
@@ -54,7 +53,7 @@ if vim.fn.has('nvim-0.12') == 1 then
   require('vim._core.ui2').enable({ enable = true })
 
   -- WARNING: experimental
-  vim.o.cmdheight = 0
+  -- vim.o.cmdheight = 0
 end
 
 -- Editing ====================================================================
@@ -65,10 +64,9 @@ vim.o.ignorecase = true                                                 -- Ignor
 vim.o.incsearch = true                                                  -- Show search matches while typing
 vim.o.infercase = true                                                  -- Infer case in built-in completion
 vim.o.shiftwidth = 2                                                    -- Use this number of spaces for indentation
-vim.o.smartcase = true                                                  -- Respect case if search pattern has upper case
 vim.o.smartindent = true                                                -- Make indenting smart
-vim.o.spell = true
-vim.o.spelllang = 'en,uk,pt'                                            -- Define spelling dictionaries
+vim.o.spell = true                                                      -- Enable spell check
+vim.o.spelllang = 'en,pt'                                               -- Define spelling dictionaries
 vim.o.spelloptions = 'camel'                                            -- Treat camelCase word parts as separate words
 vim.o.tabstop = 2                                                       -- Show tab as this number of spaces
 vim.o.virtualedit = 'block'                                             -- Allow going past end of line in blockwise mode
@@ -77,3 +75,9 @@ vim.o.dictionary = vim.fn.stdpath('config') .. '/misc/dict/english.txt' -- Use s
 
 -- Disabling transparency for mini_pick
 vim.api.nvim_set_hl(0, "MiniPickMatchCurrent", { reverse = true })
+
+-- auto-root: Set CWD to .git root if it exists, otherwise stay in current folder
+local root = vim.fs.root(0, '.git')
+if root then
+  vim.cmd.cd(root)
+end
