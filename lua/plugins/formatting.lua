@@ -15,6 +15,7 @@ later(function()
       javascript = { 'prettier' },
       typescript = { 'prettier' },
       json = { 'prettier' },
+      html = { 'prettier' },
       lua = { 'stylua' },
       python = { 'ruff_fix', 'ruff_format' },
       r = { 'air' },
